@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tally/app/data/services/firebase_service.dart';
 import 'package:tally/exports.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Get.putAsync(() async => FirebaseFirestore.instance);
+  await Get.putAsync(() async => FirebaseService().init());
   runApp(
    MyApp()
   );

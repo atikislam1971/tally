@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/add/bindings/add_binding.dart';
+import '../modules/add/views/add_view.dart';
 import '../modules/auth/auth/bindings/auth_binding.dart';
 import '../modules/auth/auth/views/auth_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -10,6 +12,10 @@ import '../modules/profile_setup/bindings/profile_setup_binding.dart';
 import '../modules/profile_setup/views/profile_setup_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/transaction/bindings/transaction_binding.dart';
+import '../modules/transaction/views/transaction_view.dart';
+import '../modules/welcome/bindings/welcome_binding.dart';
+import '../modules/welcome/views/welcome_view.dart';
 
 part 'app_routes.dart';
 
@@ -43,6 +49,21 @@ class AppPages {
       name: _Paths.PROFILE_SETUP,
       page: () => const ProfileSetupView(),
       binding: ProfileSetupBinding(),
+    ),
+    GetPage(
+      name: _Paths.WELCOME,
+      page: () => const WelcomeView(),
+      binding: WelcomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.TRANSACTION,
+      page: () => const TransactionView(),
+      binding: TransactionBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD,
+      page: () => const AddView(),
+      binding: AddBinding(),
     ),
   ];
 }

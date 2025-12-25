@@ -1,23 +1,40 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:tally/app/routes/app_pages.dart';
+import 'package:tally/app/widgets/snackbar.dart';
 
 class ProfileSetupController extends GetxController {
-  //TODO: Implement ProfileSetupController
+  RxString businessName = RxString('');
+  RxBool isSettingUp = RxBool(false);
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  final user = FirebaseAuth.instance.currentUser;
+  final firestore = FirebaseFirestore.instance;
+
+
+  Future finishSetup() async {
+
+    print("click this button");
+
+    if (user == null) {
+      snackbar('কোন ব্যবহারকারী পাওয়া যায়নি');
+      return;
+    }
+
+    isSettingUp.value = true;
+
+    final profileData = {
+      'business_name' : businessName.value,
+      'phone_number' : user!.phoneNumber,
+    };
+
+    await firestore.collection('users').doc(user!.phoneNumber).set(profileData);
+
+    isSettingUp.value = false;
+    snackbar('প্রোফাইল সফলভাবে সংরক্ষণ করা হয়েছে!');
+
+    Get.offAllNamed(Routes.WELCOME);
+
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

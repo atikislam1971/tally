@@ -71,7 +71,7 @@ class OtpView extends GetView<AuthController> {
                         ? ButtonType.DISABLED
                         : ButtonType.ENABLED,
                     isLoading: controller.isOtpVerifying.value,
-                  onTap: () => controller.verifyOTP(),
+                  onTap:  controller.verifyOTP,
                   )
                 ],
               ))

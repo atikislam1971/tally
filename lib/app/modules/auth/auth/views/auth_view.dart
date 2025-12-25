@@ -124,26 +124,13 @@ class AuthView extends GetView<AuthController> {
                 ),
                 Column(
                   children: [
-                    // Container(
-                    //   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-                    //   width: MediaQueryUtils.width,
-                    //   decoration: BoxDecoration(
-                    //     color: AppColors.primary,
-                    //     borderRadius: BorderRadius.circular(20)
-                    //   ),
-                    //   child: Center(
-                    //     child: Text('পরবর্তী', style: TextStyle(color: Colors.white,
-                    //         fontSize: 17, fontWeight:
-                    //         FontWeight.w800)
-                    //     ),
-                    //   ),
-                    // ),
                     Obx(() =>
                         CustomButton(label: 'পরবর্তী',
                           buttonType: controller.number.isEmpty ||
                               controller.number.value.length < 10
                               ? ButtonType.DISABLED : ButtonType.ENABLED,
-                        onTap: () => controller.logiinOrRegister(),
+                        onTap: controller.logiinOrRegister,
+                          isLoading: controller.isOtpSending.value,
                         ),
                     ),
 
